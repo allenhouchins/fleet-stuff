@@ -1,0 +1,18 @@
+{
+  "auto_table_construction": {
+    "snap_packages": {
+      "query": "SELECT name,version,rev,tracking,publisher,notes FROM snap_packages",
+      "path": "/var/osquery/snap_list.db",
+      "columns": [
+        "name",
+        "version",
+        "rev",
+        "tracking",
+        "publisher",
+        "notes"
+      ],
+      "platform": "ubuntu"
+    }
+  }
+}
+
