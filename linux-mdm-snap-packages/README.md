@@ -5,7 +5,7 @@ This folder contains all the pieces you need to query a custom table in Fleet (o
 This is for testing through osquery by running this command: ```osqueryi --verbose --config_path /path/to/atc_tables.json```
 
 ### create_snap_database.sh
-This script should be distributed to all Ubuntu hosts and run via a cronjob to populate the database periodically. ** This has only been tested on Ubuntu 24.04 Desktop. **
+This script should be distributed to all Ubuntu hosts and run as root via a cron job to populate the database periodically. ** This has only been tested on Ubuntu 24.04 Desktop. **
 
 ### fleet_agent_options
 Copy this into the Agent options for a specific Team in Fleet. Settings > Teams > select the team > Agent options
