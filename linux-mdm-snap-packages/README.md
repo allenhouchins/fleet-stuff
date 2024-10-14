@@ -10,7 +10,7 @@ This script should be distributed to all Ubuntu hosts and run as root via a cron
 ### fleet_agent_options
 Copy this into the Agent options for a specific Team in Fleet. Settings > Teams > select the team > Agent options
 
-### snap_packages.ext
+### snap_packages.cpp
 This file can be used as a baseline to compile a new version of osquery that has the ```snap_packages``` table built in natively.
 
 ### fleet_output.png
