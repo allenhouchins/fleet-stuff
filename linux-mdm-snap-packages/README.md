@@ -14,7 +14,7 @@ Copy this into the agent options for a specific Team in Fleet. Settings > Teams 
 This file can be used as a baseline to compile a new version of osquery that has this snap_packages table built in natively.
 
 ## fleet_output.png
-https://github.com/allenhouchins/fleet-stuff/blob/main/linux-mdm-snap-packages/fleet_ouput.png
+!(https://github.com/allenhouchins/fleet-stuff/blob/main/linux-mdm-snap-packages/fleet_ouput.png)
 
 ## osquery_output.png
-https://github.com/allenhouchins/fleet-stuff/blob/main/linux-mdm-snap-packages/osquery_output.png
+!(https://github.com/allenhouchins/fleet-stuff/blob/main/linux-mdm-snap-packages/osquery_output.png)
