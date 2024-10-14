@@ -1,5 +1,5 @@
 # Overview
-This folder contains all the pieces you need to query a custom table in Fleet (or osquery) called ```snap_packages```. Currently Fleet and osquery have a ```deb_packages``` table but this do not include packages installed via ```snap```. This should fill the gap until this feature is implemented: https://github.com/fleetdm/fleet/issues/22658
+This folder contains all the pieces you need to query a custom table in Fleet (or osquery) called ```snap_packages```. Currently Fleet and osquery have a ```deb_packages``` table but this do not include packages installed via ```snap``` (ex: "Ubuntu Software" Snap Store). This should fill the gap until this feature is implemented: https://github.com/fleetdm/fleet/issues/22658
 
 ### atc_tables.json
 This is for testing through osquery by running this command: ```osqueryi --verbose --config_path /path/to/atc_tables.json```
