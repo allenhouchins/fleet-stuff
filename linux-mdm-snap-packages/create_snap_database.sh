@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Define the SQLite database and table name
-DB_DIR="/var/fleet"
+DB_DIR="/usr/local/bin/fleet"
 DB_NAME="snap_list.db"
 DB_PATH="$DB_DIR/$DB_NAME"
 TABLE_NAME="snap_packages"
@@ -16,7 +16,7 @@ then
     exit
 fi
 
-# Check if the /var/fleet directory exists, if not, create it
+# Check if the /usr/local/bin/fleet directory exists, if not, create it
 if [ ! -d "$DB_DIR" ]; then
     echo "Directory $DB_DIR does not exist. Creating it now..."
     sudo mkdir -p "$DB_DIR"

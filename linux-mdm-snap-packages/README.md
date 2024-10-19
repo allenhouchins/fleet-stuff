@@ -7,6 +7,9 @@ This is for testing through osquery by running this command: ```osqueryi --verbo
 ### create_snap_database.sh
 This script should be distributed to all Ubuntu hosts and run as root via a cron job to populate the database periodically. ** This has only been tested on Ubuntu 24.04 Desktop. **
 
+### create_cronjob_snap_packages_database.sh
+This script will create a cron job that runs the create_snap_database.sh on a 6 hour interval. To deliver via Fleet, upload this script, create a Policy with the following query ```SELECT 1 FROM file WHERE path = "/usr/local/bin/fleet/snap_list.db";``` and set the script to run through Policy automation. ** This has only been tested on Ubuntu 24.04 Desktop. **
+
 ### fleet_agent_options
 Copy this into the Agent options for a specific Team in Fleet. Settings > Teams > select the team > Agent options
 

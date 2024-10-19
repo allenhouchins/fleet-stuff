@@ -2,7 +2,7 @@
   "auto_table_construction": {
     "snap_packages": {
       "query": "SELECT name,version,rev,tracking,publisher,notes FROM snap_packages",
-      "path": "/var/fleet/snap_list.db",
+      "path": "/usr/local/bin/fleet/snap_list.db",
       "columns": [
         "name",
         "version",
