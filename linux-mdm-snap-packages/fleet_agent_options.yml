@@ -4,8 +4,8 @@ overrides:
     ubuntu:
       auto_table_construction:
         snap_packages:
-          path: "/var/fleet/snap_list.db"
-          query: "SELECT name, version, rev, tracking, publisher, notes FROM snap_packages;"
+          path: "/usr/local/bin/fleet/snap_list.db"
+          query: "SELECT * FROM snap_packages;"
           columns:
             - "name"
             - "version"
