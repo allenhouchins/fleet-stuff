@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Define the SQLite database and table name
 DB_DIR="/var/fleet"
