@@ -92,4 +92,5 @@ $EXECUTABLE_SCRIPT_PATH
 CRON_JOB="0 */6 * * * $EXECUTABLE_SCRIPT_PATH"
 
 # Add the cron job to the crontab (if not already present)
-(crontab -l 2>/dev/null; echo "$CRON_JOB") | grep -v -F "$CRON_JOB" | crontab -
+(crontab -l 2>/dev/null | grep -F "$EXECUTABLE_SCRIPT_PATH") || \
+(crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
