@@ -84,7 +84,7 @@ echo "Snap list data has been successfully inserted into the $DB_PATH database."
 EOF
 
 # Make the script executable
-chmod +x $EXECUTABLE_SCRIPT_PATH
+chmod 744 $EXECUTABLE_SCRIPT_PATH
 
 $EXECUTABLE_SCRIPT_PATH
 
