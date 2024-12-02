@@ -1,0 +1,10 @@
+overrides:
+  platforms:
+    darwin:
+      auto_table_construction:
+        shortcuts_app:
+          path: "/Users/%/Library/Shortcuts/Shortcuts.sqlite"
+          query: "SELECT ZNAME,ZASSOCIATEDAPPBUNDLEIDENTIFIER FROM ZSHORTCUT;"
+          columns:
+            - "ZNAME"
+            - "ZASSOCIATEDAPPBUNDLEIDENTIFIER"

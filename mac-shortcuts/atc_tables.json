@@ -1,0 +1,13 @@
+{
+  "auto_table_construction": {
+    "shortcuts_app": {
+      "query": "SELECT ZNAME,ZASSOCIATEDAPPBUNDLEIDENTIFIER FROM ZSHORTCUT;",
+      "path": "/Users/%/Library/Shortcuts/Shortcuts.sqlite",
+      "columns": [
+        "ZNAME",
+        "ZASSOCIATEDAPPBUNDLEIDENTIFIER"
+      ],
+      "platform": "darwin"
+    }
+  }
+}
