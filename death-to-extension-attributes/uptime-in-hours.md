@@ -1,5 +1,7 @@
 # Uptime in Hours
 
+The purpose of this Extension Attribute is to retrieve the uptime in hours for a macOS device.
+ 
 ## Extension Attribute:
 ```
 #!/bin/sh

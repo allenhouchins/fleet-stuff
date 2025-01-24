@@ -1,5 +1,7 @@
 # Firewall State
 
+This Extension Attribute was written to detect the current state of the Firewall on a macOS device.
+
 ## Extension Attribute
 ```
 #!/bin/bash
