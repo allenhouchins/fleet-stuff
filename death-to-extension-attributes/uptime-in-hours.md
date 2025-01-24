@@ -27,4 +27,4 @@ exit
 ## Fleet query:
 ```SELECT hours FROM uptime;```
 
-Compatible with: macOS Windows Linux ChromeOS
+Compatible with: ✅ macOS ✅ Windows ✅ Linux 🚫 ChromeOS
