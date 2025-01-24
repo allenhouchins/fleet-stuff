@@ -1,5 +1,5 @@
 # Uptime in Hours
----
+
 ## Extension Attribute:
 ```
 #!/bin/sh
