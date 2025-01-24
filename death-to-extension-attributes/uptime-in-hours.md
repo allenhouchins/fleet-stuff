@@ -1,6 +1,7 @@
 Uptime in Hours
 
 Extension Attribute:
+```
 #!/bin/sh
 
 DAYS="days,"
@@ -22,9 +23,8 @@ result=$(uptime | awk {'print $3'} | sed 's/,//g')
 fi
 
 exit
-
+```
 Fleet query:
-SELECT hours FROM uptime;
+```SELECT hours FROM uptime;```
 
 Compatible with: macOS Windows Linux ChromeOS
-
