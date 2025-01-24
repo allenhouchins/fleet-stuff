@@ -1,6 +1,6 @@
-Uptime in Hours
-
-Extension Attribute:
+# Uptime in Hours
+---
+## Extension Attribute:
 ```
 #!/bin/sh
 
@@ -24,7 +24,7 @@ fi
 
 exit
 ```
-Fleet query:
+## Fleet query:
 ```SELECT hours FROM uptime;```
 
 Compatible with: macOS Windows Linux ChromeOS
