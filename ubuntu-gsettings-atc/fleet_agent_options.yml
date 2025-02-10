@@ -1,0 +1,12 @@
+# Copy and paste this to the end of your Agent options
+overrides:
+  platforms:
+    ubuntu:
+      auto_table_construction:
+        gsettings:
+          path: "/usr/local/bin/fleet/dconf_settings.db"
+          query: "SELECT * FROM settings;"
+          columns:
+            - "key"
+            - "value"
+

@@ -1,0 +1,13 @@
+{
+  "auto_table_construction": {
+    "gsettings": {
+      "query": "SELECT key, value FROM settings;",
+      "path": "/usr/local/bin/fleet/dconf_settings.db",
+      "columns": [
+        "key",
+        "value"
+      ],
+      "platform": "ubuntu"
+    }
+  }
+}
