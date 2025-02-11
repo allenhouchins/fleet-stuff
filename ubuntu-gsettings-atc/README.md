@@ -1,5 +1,5 @@
 # Overview
-This folder contains all the pieces you need to query a custom table in Fleet (or osquery) called ```gsettings```. This should fill the gap until this feature is implemented: https://github.com/fleetdm/fleet/issues/22658
+This folder contains all the pieces you need to query a custom table in Fleet (or osquery) called ```gsettings```. This should fill the gap until this feature is implemented: [https://github.com/fleetdm/fleet/issues/22658](https://github.com/fleetdm/fleet/issues/22823)
 
 ### atc_tables.json
 This is for testing through osquery by running this command: ```osqueryi --verbose --config_path /path/to/atc_tables.json```
