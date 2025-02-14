@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Identifier</key>
+    <string>com.github.fleetctl.download</string>
+    <key>Description</key>
+    <string>Downloads the latest fleetctl macOS release from GitHub.</string>
+    <key>Input</key>
+    <dict>
+      <key>github_repo</key>
+      <string>fleetdm/fleet</string>
+      <key>asset_regex</key>
+      <string>fleetctl_v[0-9]+\.[0-9]+\.[0-9]+_macos\.zip</string>
+      <key>include_prereleases</key>
+      <false/>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.0</string>
+    <key>Process</key>
+    <array>
+      <dict>
+        <key>Processor</key>
+        <string>GitHubReleasesInfoProvider</string>
+      </dict>
+      <dict>
+        <key>Processor</key>
+        <string>URLDownloader</string>
+      </dict>
+    </array>
+    <key>Output</key>
+    <dict>
+      <key>url</key>
+      <string>%RELEASE_URL%</string>
+      <key>version</key>
+      <string>%VERSION%</string>
+    </dict>
+  </dict>
+</plist>
+

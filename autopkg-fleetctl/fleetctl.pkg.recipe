@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Identifier</key>
+    <string>com.github.fleetctl.pkg</string>
+    <key>Description</key>
+    <string>
+      Creates a PKG installer that installs the fleetctl binary to /usr/local/bin,
+      using the ZIP file downloaded by fleetctl.download.recipe.
+    </string>
+    <key>Input</key>
+    <dict>
+      <!-- These inputs should be provided by the download recipe -->
+      <key>DOWNLOAD_FILE_PATH</key>
+      <string></string>
+      <key>version</key>
+      <string></string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.0</string>
+    <key>Process</key>
+    <array>
+      <!-- 1. Unarchive the downloaded ZIP file -->
+      <dict>
+        <key>Processor</key>
+        <string>Unarchiver</string>
+        <key>Arguments</key>
+        <dict>
+          <!-- Use archive_path (the Unarchiver now expects this) -->
+          <key>archive_path</key>
+          <string>%DOWNLOAD_FILE_PATH%</string>
+        </dict>
+      </dict>
+      <!-- 2. Create the package root structure and copy the fleetctl binary into usr/local/bin -->
+      <dict>
+        <key>Processor</key>
+        <string>PkgRootCreator</string>
+        <key>Arguments</key>
+        <dict>
+          <!-- Directory where the package root will be created -->
+          <key>pkgroot</key>
+          <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+          <!-- Create the required directory structure -->
+          <key>pkgdirs</key>
+          <array>
+            <string>usr/local/bin</string>
+          </array>
+          <!-- Use the output of Unarchiver (assumed to be the fleetctl binary) -->
+          <key>source_path</key>
+          <string>%pathname%</string>
+          <!-- Copy the binary into the usr/local/bin folder within the pkgroot -->
+          <key>destination_path</key>
+          <string>usr/local/bin</string>
+        </dict>
+      </dict>
+      <!-- 3. Build the PKG installer -->
+      <dict>
+        <key>Processor</key>
+        <string>PkgCreator</string>
+        <key>Arguments</key>
+        <dict>
+          <key>pkg_request</key>
+          <dict>
+            <!-- Output PKG file location -->
+            <key>pkg_path</key>
+            <string>%RECIPE_CACHE_DIR%/fleetctl.pkg</string>
+            <!-- Unique identifier for the package -->
+            <key>identifier</key>
+            <string>com.fleetctl.pkg</string>
+            <!-- Use the version passed from the download recipe -->
+            <key>version</key>
+            <string>%version%</string>
+            <!-- Files in pkgroot will be installed relative to this location -->
+            <key>install_location</key>
+            <string>/</string>
+            <!-- The package root directory created above -->
+            <key>pkgroot</key>
+            <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+          </dict>
+        </dict>
+      </dict>
+    </array>
+  </dict>
+</plist>
