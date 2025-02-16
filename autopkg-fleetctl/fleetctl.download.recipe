@@ -11,8 +11,9 @@
     <dict>
       <key>github_repo</key>
       <string>fleetdm/fleet</string>
+      <!-- Exact regex to capture the numeric version from the asset filename -->
       <key>asset_regex</key>
-      <string>fleetctl_v[0-9]+\.[0-9]+\.[0-9]+_macos\.zip</string>
+      <string>fleetctl_v([0-9]+\.[0-9]+\.[0-9]+)_macos\.zip</string>
       <key>include_prereleases</key>
       <false/>
     </dict>
@@ -33,9 +34,9 @@
     <dict>
       <key>url</key>
       <string>%RELEASE_URL%</string>
+      <!-- Use the captured group as the version -->
       <key>version</key>
-      <string>%VERSION%</string>
+      <string>%MATCH_1%</string>
     </dict>
   </dict>
 </plist>
-
