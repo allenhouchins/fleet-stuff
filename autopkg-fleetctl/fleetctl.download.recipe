@@ -9,6 +9,8 @@
     <string>Downloads the latest fleetctl macOS release from GitHub.</string>
     <key>Input</key>
     <dict>
+      <key>NAME</key>
+      <string>fleetctl</string>
       <key>github_repo</key>
       <string>fleetdm/fleet</string>
       <key>asset_regex</key>
@@ -23,18 +25,46 @@
       <dict>
         <key>Processor</key>
         <string>GitHubReleasesInfoProvider</string>
+        <key>Arguments</key>
+        <dict>
+          <key>github_repo</key>
+          <string>%github_repo%</string>
+          <key>asset_regex</key>
+          <string>%asset_regex%</string>
+          <key>include_prereleases</key>
+          <false/>
+        </dict>
       </dict>
       <dict>
         <key>Processor</key>
         <string>URLDownloader</string>
       </dict>
+      <dict>
+        <key>Processor</key>
+        <string>EndOfCheckPhase</string>
+      </dict>
+      <dict>
+        <key>Processor</key>
+        <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
+        <key>Arguments</key>
+        <dict>
+          <key>version</key>
+          <string>%version%</string>
+          <key>index</key>
+          <integer>1</integer>
+          <key>split_on</key>
+          <string>fleet-v</string>
+        </dict>
+      </dict>
     </array>
     <key>Output</key>
     <dict>
       <key>url</key>
-      <string>%RELEASE_URL%</string>
+      <string>%url%</string>
+      <key>pathname</key>
+      <string>%pathname%</string>
       <key>version</key>
-      <string>%MATCH_1%</string>
+      <string>%version%</string>
     </dict>
   </dict>
 </plist>

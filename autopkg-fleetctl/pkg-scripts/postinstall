@@ -1,8 +1,0 @@
-#!/bin/bash
-set -e
-
-# Create or update the symlink so that fleetctl is in your PATH
-ln -sf /opt/fleetctl/bin/fleetctl /usr/local/bin/fleetctl
-
-exit 0
-
