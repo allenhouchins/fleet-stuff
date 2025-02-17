@@ -3,10 +3,8 @@
  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
  <dict>
-  <!-- Identifier ends with .recipe -->
   <key>Identifier</key>
   <string>github.fleetdm.fleetctl.pkg.recipe</string>
-  <!-- Inherit variables from the download recipe -->
   <key>ParentRecipe</key>
   <string>github.fleetdm.fleetctl.download</string>
   <key>Description</key>
@@ -15,22 +13,17 @@
   <string>2.0</string>
   <key>Input</key>
   <dict>
-    <!-- Default cache directory -->
     <key>RECIPE_CACHE_DIR</key>
     <string>/tmp/autopkg_cache</string>
-    <!-- Final package file (e.g., fleetctl_v4.63.0.pkg) -->
     <key>pkg_path</key>
     <string>%RECIPE_CACHE_DIR%/fleetctl_v%version_override%.pkg</string>
-    <!-- Inherited from download recipe -->
     <key>pathname</key>
     <string>%pathname%</string>
-    <!-- Use version_override to supply a valid version (since download recipe may output "fleet-v4") -->
     <key>version_override</key>
     <string>4.63.0</string>
   </dict>
   <key>Process</key>
   <array>
-    <!-- 1. Unarchive the downloaded zip into the staging area -->
     <dict>
       <key>Processor</key>
       <string>Unarchiver</string>
@@ -40,14 +33,12 @@
          <string>%pathname%</string>
          <key>destination_path</key>
          <string>%RECIPE_CACHE_DIR%/pkgroot</string>
-         <!-- The asset’s top-level folder should be "fleetctl" -->
          <key>NAME</key>
          <string>fleetctl</string>
          <key>flatten</key>
          <true/>
       </dict>
     </dict>
-    <!-- 2. Create the package using PkgCreator -->
     <dict>
       <key>Processor</key>
       <string>PkgCreator</string>
@@ -55,23 +46,18 @@
       <dict>
          <key>pkg_request</key>
          <dict>
-             <!-- The payload directory -->
              <key>pkgroot</key>
              <string>%RECIPE_CACHE_DIR%/pkgroot</string>
              <key>id</key>
              <string>com.github.fleetctl</string>
              <key>identifier</key>
              <string>com.github.fleetctl</string>
-             <!-- Use the valid override version -->
              <key>version</key>
              <string>%version_override%</string>
-             <!-- Install into /opt/fleetctl/bin -->
              <key>install_location</key>
              <string>/opt/fleetctl/bin</string>
-             <!-- Package name will be fleetctl_v<version_override> (without .pkg extension) -->
              <key>pkgname</key>
              <string>fleetctl_v%version_override%</string>
-             <!-- Specify the scripts folder (as a string) -->
              <key>scripts</key>
              <string>%RECIPE_CACHE_DIR%/pkg-scripts</string>
          </dict>
@@ -80,7 +66,6 @@
   </array>
   <key>Output</key>
   <dict>
-    <!-- Final package file -->
     <key>pkg_path</key>
     <string>%RECIPE_CACHE_DIR%/fleetctl_v%version_override%.pkg</string>
   </dict>
