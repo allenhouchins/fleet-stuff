@@ -1,5 +1,5 @@
 # Warning
-This is still a work in progress. Do not use yet. 
+This is still a work in progress.
 
 ## Dependencies:
 `autopkg repo-add homebysix-recipes`
