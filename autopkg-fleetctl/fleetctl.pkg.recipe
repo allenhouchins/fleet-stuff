@@ -5,10 +5,10 @@
  <dict>
   <!-- Identifier ends with .recipe -->
   <key>Identifier</key>
-  <string>com.github.fleetctl.pkg.recipe</string>
+  <string>github.fleetdm.fleetctl.pkg.recipe</string>
   <!-- Inherit variables from the download recipe -->
   <key>ParentRecipe</key>
-  <string>com.github.fleetctl.download</string>
+  <string>github.fleetdm.fleetctl.download</string>
   <key>Description</key>
   <string>Creates a pkg from the fleetctl zip release so that fleetctl is installed into /opt/fleetctl/bin, then symlinked to /usr/local/bin.</string>
   <key>MinimumVersion</key>
