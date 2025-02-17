@@ -4,7 +4,7 @@
 <plist version="1.0">
   <dict>
     <key>Identifier</key>
-    <string>com.github.fleetctl.download</string>
+    <string>github.fleetdm.fleetctl.download</string>
     <key>Description</key>
     <string>Downloads the latest fleetctl macOS release from GitHub.</string>
     <key>Input</key>
@@ -34,7 +34,6 @@
     <dict>
       <key>url</key>
       <string>%RELEASE_URL%</string>
-      <!-- Use the captured group as the version -->
       <key>version</key>
       <string>%MATCH_1%</string>
     </dict>
