@@ -8,17 +8,13 @@
   <key>ParentRecipe</key>
   <string>github.fleetdm.fleetctl.download</string>
   <key>Description</key>
-  <string>Creates a pkg from the fleetctl zip release so that fleetctl is installed into /opt/fleetctl/bin, then symlinked to /usr/local/bin.</string>
+  <string>Creates a pkg from the fleetctl zip release so that fleetctl is installed into /opt/fleetdm/, and adds it to PATH via a post-install script using a symbolic link.</string>
   <key>MinimumVersion</key>
   <string>2.0</string>
   <key>Input</key>
   <dict>
-    <key>RECIPE_CACHE_DIR</key>
-    <string>/tmp/autopkg_cache</string>
-    <key>pkg_path</key>
-    <string>%RECIPE_CACHE_DIR%/fleetctl_v%version_override%.pkg</string>
-    <key>pathname</key>
-    <string>%pathname%</string>
+    <key>NAME</key>
+    <string>fleetctl</string>
     <key>version_override</key>
     <string>4.63.0</string>
   </dict>
@@ -32,11 +28,82 @@
          <key>archive_path</key>
          <string>%pathname%</string>
          <key>destination_path</key>
-         <string>%RECIPE_CACHE_DIR%/pkgroot</string>
-         <key>NAME</key>
-         <string>fleetctl</string>
-         <key>flatten</key>
+         <string>%RECIPE_CACHE_DIR%/unzip</string>
+         <key>purge_destination</key>
          <true/>
+      </dict>
+    </dict>
+    <dict>
+      <key>Processor</key>
+      <string>PkgRootCreator</string>
+      <key>Arguments</key>
+      <dict>
+         <key>pkgroot</key>
+         <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+         <key>pkgdirs</key>
+         <dict>
+            <key>opt</key>
+            <string>0755</string>
+            <key>opt/fleetdm</key>
+            <string>0755</string>
+         </dict>
+      </dict>
+    </dict>
+    <dict>
+      <key>Processor</key>
+      <string>FileFinder</string>
+      <key>Arguments</key>
+      <dict>
+         <key>pattern</key>
+         <string>%RECIPE_CACHE_DIR%/unzip/*fleetctl*</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>Processor</key>
+      <string>Copier</string>
+      <key>Arguments</key>
+      <dict>
+         <key>source_path</key>
+         <string>%found_filename%</string>
+         <key>destination_path</key>
+         <string>%RECIPE_CACHE_DIR%/pkgroot/opt/fleetdm/fleetctl</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>Processor</key>
+      <string>PkgRootCreator</string>
+      <key>Arguments</key>
+      <dict>
+         <key>pkgroot</key>
+         <string>%RECIPE_CACHE_DIR%/scripts</string>
+         <key>pkgdirs</key>
+         <dict>
+            <key>scripts</key>
+            <string>0755</string>
+         </dict>
+      </dict>
+    </dict>
+    <dict>
+      <key>Processor</key>
+      <string>FileCreator</string>
+      <key>Arguments</key>
+      <dict>
+         <key>file_path</key>
+         <string>%RECIPE_CACHE_DIR%/scripts/postinstall</string>
+         <key>file_mode</key>
+         <string>0755</string>
+         <key>file_content</key>
+         <string>#!/bin/bash
+
+# Make the binary executable
+chmod 755 /opt/fleetdm/fleetctl
+
+# Create a symbolic link in /usr/local/bin
+mkdir -p /usr/local/bin
+ln -sf /opt/fleetdm/fleetctl/fleetctl /usr/local/bin/fleetctl
+
+exit 0
+</string>
       </dict>
     </dict>
     <dict>
@@ -50,16 +117,43 @@
              <string>%RECIPE_CACHE_DIR%/pkgroot</string>
              <key>id</key>
              <string>com.github.fleetctl</string>
-             <key>identifier</key>
-             <string>com.github.fleetctl</string>
              <key>version</key>
              <string>%version_override%</string>
-             <key>install_location</key>
-             <string>/opt/fleetctl/bin</string>
+             <key>options</key>
+             <string>purge_ds_store</string>
              <key>pkgname</key>
              <string>fleetctl_v%version_override%</string>
              <key>scripts</key>
-             <string>%RECIPE_CACHE_DIR%/pkg-scripts</string>
+             <string>%RECIPE_CACHE_DIR%/scripts</string>
+             <key>chown</key>
+             <array>
+                <dict>
+                   <key>path</key>
+                   <string>opt</string>
+                   <key>user</key>
+                   <string>root</string>
+                   <key>group</key>
+                   <string>wheel</string>
+                </dict>
+                <dict>
+                   <key>path</key>
+                   <string>opt/fleetdm</string>
+                   <key>user</key>
+                   <string>root</string>
+                   <key>group</key>
+                   <string>wheel</string>
+                </dict>
+                <dict>
+                   <key>path</key>
+                   <string>opt/fleetdm/fleetctl</string>
+                   <key>user</key>
+                   <string>root</string>
+                   <key>group</key>
+                   <string>wheel</string>
+                   <key>mode</key>
+                   <string>0755</string>
+                </dict>
+             </array>
          </dict>
       </dict>
     </dict>
