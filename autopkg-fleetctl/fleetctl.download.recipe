@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
     <key>Identifier</key>
@@ -50,11 +51,20 @@
           <key>version</key>
           <string>%version%</string>
           <key>index</key>
-          <integer>0</integer>
+          <integer>1</integer>
           <key>split_on</key>
-          <string>_v</string>
+          <string>fleet-v</string>
         </dict>
       </dict>
     </array>
+    <key>Output</key>
+    <dict>
+      <key>url</key>
+      <string>%url%</string>
+      <key>pathname</key>
+      <string>%pathname%</string>
+      <key>version</key>
+      <string>%version%</string>
+    </dict>
   </dict>
 </plist>
