@@ -1,60 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <dict>
-    <key>Identifier</key>
-    <string>github.fleetdm.fleetctl.download</string>
-    <key>Description</key>
-    <string>Downloads the latest fleetctl macOS release from GitHub.</string>
-    <key>Input</key>
-    <dict>
-      <key>NAME</key>
-      <string>fleetctl</string>
-      <key>github_repo</key>
-      <string>fleetdm/fleet</string>
-      <key>asset_regex</key>
-      <string>fleetctl_v([0-9]+\.[0-9]+\.[0-9]+)_macos\.zip</string>
-      <key>include_prereleases</key>
-      <false/>
-    </dict>
-    <key>MinimumVersion</key>
-    <string>2.0</string>
-    <key>Process</key>
-    <array>
-      <dict>
-        <key>Processor</key>
-        <string>GitHubReleasesInfoProvider</string>
-        <key>Arguments</key>
-        <dict>
-          <key>github_repo</key>
-          <string>%github_repo%</string>
-          <key>asset_regex</key>
-          <string>%asset_regex%</string>
-          <key>include_prereleases</key>
-          <false/>
-        </dict>
-      </dict>
-      <dict>
-        <key>Processor</key>
-        <string>URLDownloader</string>
-      </dict>
-      <dict>
-        <key>Processor</key>
-        <string>EndOfCheckPhase</string>
-      </dict>
-      <dict>
-        <key>Processor</key>
-        <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
-        <key>Arguments</key>
-        <dict>
-          <key>version</key>
-          <string>%version%</string>
-          <key>index</key>
-          <integer>0</integer>
-          <key>split_on</key>
-          <string>_v</string>
-        </dict>
-      </dict>
-    </array>
-  </dict>
-</plist>
+Description: Gets the latest version of fleetctl from Github releases, and normalises the version.
+Identifier: com.github.jc0b.download.fleetctl
+MinimumVersion: "2.3"
+
+Input:
+  NAME: fleetctl
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      github_repo: fleetdm/fleet
+      asset_regex: fleetctl_v.*_macos.zip
+
+  - Processor: com.github.jazzace.processors/TextSearcher
+    Arguments:
+      re_pattern: \d+\.\d{1,2}\.\d{1,2}
+      text_in: "%version%"
+      result_output_var_name: "version"
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-%version%.zip"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/%NAME%"
+      purge_destination: true
