@@ -25,7 +25,7 @@ Process:
             path: "/usr/local/bin/%NAME%"
             user: "root"
             mode: "0755"
-        pkgname: "%NAME%_v%version%"  # Changed to match desired format
+        pkgname: "%NAME%_v%version%"
         version: "%version%"
         id: "%PKGID%"
         options: "purge_ds_store"
