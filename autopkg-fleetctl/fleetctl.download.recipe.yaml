@@ -3,11 +3,13 @@ Identifier: com.github.jc0b.download.fleetctl
 MinimumVersion: "2.3"
 Input:
   NAME: fleetctl
+  CURL_PATH: /usr/bin/curl
 Process:
   - Processor: GitHubReleasesInfoProvider
     Arguments:
       github_repo: fleetdm/fleet
       asset_regex: fleetctl_v.*_macos.zip
+      print_response: true  # This will print the API response
   - Processor: com.github.jazzace.processors/TextSearcher
     Arguments:
       re_pattern: \d+\.\d{1,2}\.\d{1,2}
