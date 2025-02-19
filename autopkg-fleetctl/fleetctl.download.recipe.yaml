@@ -9,7 +9,9 @@ Process:
     Arguments:
       github_repo: fleetdm/fleet
       asset_regex: fleetctl_v.*_macos.zip
-      print_response: true  # This will print the API response
+      include_prereleases: false
+      sort_by_highest_tag_names: true
+      print_response: true
   - Processor: com.github.jazzace.processors/TextSearcher
     Arguments:
       re_pattern: \d+\.\d{1,2}\.\d{1,2}
@@ -24,3 +26,4 @@ Process:
       archive_path: "%pathname%"
       destination_path: "%RECIPE_CACHE_DIR%/%NAME%"
       purge_destination: true
+      
