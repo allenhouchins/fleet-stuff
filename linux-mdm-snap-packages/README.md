@@ -13,11 +13,47 @@ This script will create a cron job that runs the create_snap_database.sh on a 6 
 ### fleet_agent_options
 Copy this into the Agent options for a specific Team in Fleet. Settings > Teams > select the team > Agent options
 
-### snap_packages.cpp
-This file can be used as a baseline to compile a new version of osquery that has the ```snap_packages``` table built in natively.
 
 ### fleet_output.png
 ![alt text](https://github.com/allenhouchins/fleet-stuff/blob/main/linux-mdm-snap-packages/fleet_ouput.png "Fleet output")
 
 ### osquery_output.png
 ![alt text](https://github.com/allenhouchins/fleet-stuff/blob/main/linux-mdm-snap-packages/osquery_output.png "osquery output")
+
+### snap packages extension
+This extension adds a `snap_packages` table to osquery, allowing you to query information about installed snap packages on Ubuntu systems.
+
+## Table Schema
+
+The `snap_packages` table provides the following columns:
+
+| Column     | Type   | Description                       |
+|------------|--------|-----------------------------------|
+| name       | TEXT   | Name of the snap package          |
+| version    | TEXT   | Version of the snap package       |
+| rev        | TEXT   | Revision number                   |
+| tracking   | TEXT   | The snap channel being tracked    |
+| publisher  | TEXT   | Publisher of the snap package     |
+| notes      | TEXT   | Additional notes about the package|
+
+## Usage
+
+After building and loading the extension, you can query the table like any other osquery table:
+
+```sql
+SELECT * FROM snap_packages;
+```
+
+Or more specific queries:
+
+```sql
+-- Find all snaps from Canonical
+SELECT name, version, tracking FROM snap_packages WHERE publisher = 'canonical';
+
+-- Count snaps by publisher
+SELECT publisher, COUNT(*) as count FROM snap_packages GROUP BY publisher;
+
+-- Find snaps on the edge channel
+SELECT name, version FROM snap_packages WHERE tracking = 'edge';
+```
+
