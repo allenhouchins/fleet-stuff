@@ -20,7 +20,7 @@ The script:
 
 ## Script
 
-### `get_device_token.sh` (Bash)
+### `generate_device_token.sh` (Bash)
 - **Platform**: macOS, Linux
 - **Requirements**: 
   - `curl` (for HTTP requests)
@@ -34,14 +34,14 @@ The script:
 
 ```bash
 # Make executable (if not already)
-chmod +x get_device_token.sh
+chmod +x generate_device_token.sh
 
 # Run with Fleet URL
-sudo ./get_device_token.sh https://fleet.example.com
+sudo ./generate_device_token.sh https://fleet.example.com
 
 # Or use environment variable
 export FLEET_URL=https://fleet.example.com
-sudo ./get_device_token.sh
+sudo ./generate_device_token.sh
 ```
 
 ## Environment Variables
@@ -61,7 +61,7 @@ The script supports the following environment variables:
 export ORBIT_ROOT_DIR=/custom/path/to/orbit
 export FLEET_CERTIFICATE=/path/to/cert.pem
 export FLEET_URL=https://fleet.example.com
-sudo ./get_device_token.sh
+sudo ./generate_device_token.sh
 ```
 
 ## Default File Locations
@@ -102,7 +102,7 @@ sudo ./get_device_token.sh
 ```bash
 # The node key file is typically owned by root with restricted permissions
 # Run the script with sudo:
-sudo ./get_device_token.sh https://fleet.example.com
+sudo ./generate_device_token.sh https://fleet.example.com
 ```
 
 ### Cannot Read Node Key File
@@ -181,26 +181,26 @@ The script calls the following Fleet API endpoint:
 
 ### Basic Usage
 ```bash
-sudo ./get_device_token.sh https://fleet.example.com
+sudo ./generate_device_token.sh https://fleet.example.com
 ```
 
 ### With Custom Certificate
 ```bash
 export FLEET_CERTIFICATE=/path/to/fleet-cert.pem
-sudo ./get_device_token.sh https://fleet.example.com
+sudo ./generate_device_token.sh https://fleet.example.com
 ```
 
 ### With Custom Orbit Directory
 ```bash
 export ORBIT_ROOT_DIR=/var/lib/orbit
 export FLEET_URL=https://fleet.example.com
-sudo ./get_device_token.sh
+sudo ./generate_device_token.sh
 ```
 
 ### Testing with Insecure Mode (Not Recommended)
 ```bash
 export FLEET_INSECURE=1
-sudo ./get_device_token.sh https://fleet.example.com
+sudo ./generate_device_token.sh https://fleet.example.com
 ```
 
 ## Related Files

@@ -3,7 +3,7 @@
 # Works on macOS and Linux
 #
 # Usage:
-#   ./get_device_token.sh [FLEET_URL]
+#   ./generate_device_token.sh [FLEET_URL]
 #
 # Environment variables:
 #   ORBIT_ROOT_DIR - Orbit root directory (default: /opt/orbit)
